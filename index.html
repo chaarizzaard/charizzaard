@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>˚ ⋆｡˚ my space ˚｡⋆ ˚</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink-lightest:#FFF3F6;
+    --pink-light:#FFE4EC;
+    --pink:#FFD1DC;
+    --pink-mid:#FFB7B2;
+    --pink-deep:#F08A9C;
+    --lavender:#E7DFFB;
+    --lavender-deep:#C6B4EE;
+    --grey-border:#8B8594;
+    --ink:#5F5266;
+    --cream:#FFFBFC;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    font-family:'Quicksand',sans-serif;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,0.6) 0, transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.5) 0, transparent 45%),
+      linear-gradient(135deg,#FBD3E2 0%, #E7DFFB 55%, #FDEAF1 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+    overflow-x:hidden;
+  }
+  .pixel-font{font-family:'Press Start 2P', monospace, cursive;}
+  img,svg{image-rendering:pixelated; image-rendering:crisp-edges;}
+
+  /* window chrome */
+  .win-frame{
+    box-shadow:
+      inset -2px -2px 0 rgba(0,0,0,0.18),
+      inset 2px 2px 0 rgba(255,255,255,0.75),
+      0 0 0 2px var(--grey-border),
+      0 10px 30px rgba(120,90,120,0.25);
+  }
+  .win-border-inset{
+    box-shadow:
+      inset 2px 2px 0 rgba(0,0,0,0.18),
+      inset -2px -2px 0 rgba(255,255,255,0.85),
+      0 0 0 1px var(--grey-border);
+  }
+  .ctrl-btn{
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.35), inset 1px 1px 0 rgba(255,255,255,0.85);
+  }
+  .ctrl-btn:active{
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,0.35), inset -1px -1px 0 rgba(255,255,255,0.85);
+  }
+
+  /* taskbar tabs */
+  .tab-btn{
+    font-family:'Press Start 2P', monospace;
+    font-size:9px;
+    line-height:1.4;
+    padding:7px 9px;
+    background:var(--pink-light);
+    border:1px solid var(--grey-border);
+    color:var(--ink);
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.2), inset 1px 1px 0 rgba(255,255,255,0.8);
+    transition: transform .08s ease;
+    white-space:nowrap;
+  }
+  .tab-btn:hover{ background:var(--pink); }
+  .tab-btn.active{
+    background:var(--pink-deep);
+    color:#fff;
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,0.3), inset -1px -1px 0 rgba(255,255,255,0.5);
+  }
+  .tab-btn:active{ transform:translateY(1px); }
+
+  /* generic tactile buttons */
+  .jump-btn{
+    font-weight:600;
+    font-size:13px;
+    padding:11px 14px;
+    background:var(--pink-light);
+    border:1px solid var(--grey-border);
+    color:var(--ink);
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.18), inset 1px 1px 0 rgba(255,255,255,0.85);
+    transition: transform .08s ease;
+    text-align:left;
+    display:flex; align-items:center; gap:8px;
+  }
+  .jump-btn:hover{ background:var(--pink); }
+  .jump-btn:active{ transform:translateY(1px); box-shadow: inset 1px 1px 0 rgba(0,0,0,0.2), inset -1px -1px 0 rgba(255,255,255,0.7);}
+
+  .social-btn{
+    display:flex; justify-content:space-between; align-items:center;
+    font-weight:700; font-size:13.5px;
+    padding:13px 16px;
+    background:linear-gradient(180deg,#ffffff, var(--pink-light));
+    border:1px solid var(--grey-border);
+    color:var(--ink);
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,0.15), inset 1px 1px 0 rgba(255,255,255,0.9), 3px 3px 0 rgba(139,133,148,0.25);
+    transition: transform .08s ease, box-shadow .08s ease;
+  }
+  .social-btn:hover{ background:linear-gradient(180deg,#ffffff, var(--pink-mid)); }
+  .social-btn:active{
+    transform:translate(2px,2px);
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,0.2);
+  }
+
+  .pixel-divider{
+    height:5px;
+    background-image:repeating-linear-gradient(90deg, var(--pink-deep) 0 5px, transparent 5px 10px);
+    opacity:.7;
+    border-radius:1px;
+  }
+
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.3;} }
+  .blinky{ animation: blink 1.7s steps(1) infinite; }
+
+  @keyframes floaty{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-5px);} }
+  .floaty{ animation: floaty 2.8s ease-in-out infinite; }
+
+  @keyframes marquee-glow{ 0%,100%{ filter:drop-shadow(0 0 0 rgba(240,138,156,0)); } 50%{ filter:drop-shadow(0 0 4px rgba(240,138,156,0.55)); } }
+  .glow{ animation: marquee-glow 2.4s ease-in-out infinite; }
+
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--pink-light);}
+  ::-webkit-scrollbar-thumb{background:var(--pink-deep); border:2px solid var(--pink-light);}
+
+  .bg-sparkle{ position:fixed; pointer-events:none; opacity:.55; z-index:0; }
+
+  .about-li{
+    padding:8px 0 8px 2px;
+    border-bottom:1px dashed rgba(139,133,148,0.35);
+    font-size:13.5px;
+    color:var(--ink);
+  }
+  .about-li:last-child{ border-bottom:none; }
+  .about-li b{ color:var(--pink-deep); font-weight:700; }
+</style>
+</head>
+<body>
+
+<div class="bg-sparkle floaty" style="top:8%; left:6%;" id="bg-sparkle-1"></div>
+<div class="bg-sparkle floaty" style="top:75%; left:10%; animation-delay:.6s;" id="bg-sparkle-2"></div>
+<div class="bg-sparkle floaty" style="top:14%; right:8%; animation-delay:1.1s;" id="bg-sparkle-3"></div>
+<div class="bg-sparkle floaty" style="bottom:10%; right:7%; animation-delay:1.6s;" id="bg-sparkle-4"></div>
+
+<main class="w-full max-w-[560px] win-frame bg-[var(--cream)] rounded-sm overflow-hidden relative z-10 select-none">
+
+  <div class="flex items-center justify-between px-2.5 py-2 bg-gradient-to-r from-[var(--pink-deep)] via-[var(--pink-mid)] to-[var(--lavender-deep)]">
+    <span id="titleBarText" class="pixel-font text-white text-[9.5px] sm:text-[11px] tracking-wide" style="text-shadow:1px 1px 0 rgba(0,0,0,0.25);">〔 ✦ start.page 〕</span>
+    <div class="flex gap-1.5">
+      <button aria-label="minimize" class="ctrl-btn w-5 h-5 sm:w-6 sm:h-6 bg-[var(--pink-lightest)] border border-[var(--grey-border)] text-[10px] flex items-center justify-center text-[var(--ink)]">━</button>
+      <button aria-label="maximize" class="ctrl-btn w-5 h-5 sm:w-6 sm:h-6 bg-[var(--pink-lightest)] border border-[var(--grey-border)] text-[10px] flex items-center justify-center text-[var(--ink)]">◻</button>
+      <button aria-label="close" class="ctrl-btn w-5 h-5 sm:w-6 sm:h-6 bg-[var(--pink-lightest)] border border-[var(--grey-border)] text-[10px] flex items-center justify-center text-[var(--ink)]">🞪</button>
+    </div>
+  </div>
+
+  <div class="flex gap-4 px-3.5 py-1.5 bg-[var(--pink-light)] border-b border-[var(--grey-border)] text-[9px] pixel-font text-[var(--ink)]">
+    <span class="hover:text-[var(--pink-deep)] cursor-pointer">file</span>
+    <span class="hover:text-[var(--pink-deep)] cursor-pointer">edit</span>
+    <span class="hover:text-[var(--pink-deep)] cursor-pointer">view</span>
+    <span class="hover:text-[var(--pink-deep)] cursor-pointer">help</span>
+  </div>
+
+  <div id="mainContent" class="p-5 sm:p-7 min-h-[440px] max-h-[68vh] overflow-y-auto bg-[var(--cream)] relative">
+
+    <section id="view-home">
+      <div class="flex flex-col items-center text-center gap-4">
+        <div id="homeStamp" class="blinky"></div>
+        <h1 class="pixel-font text-[13px] sm:text-[15px] text-[var(--pink-deep)] leading-loose glow">✧ welcome to my space ✧</h1>
+        <p class="text-[13.5px] text-[var(--ink)] italic">( ˶ˆ ᗜ ˆ˵ ) ⋆｡˚ a cozy lil corner of the internet ⋆｡˚</p>
+        <div class="pixel-divider w-32"></div>
+        <p class="text-[12.5px] text-[#8b7d92] max-w-[280px] leading-relaxed">thank u for stopping by ‧₊˚ ⋆ make urself comfy, poke around, say hi ‧₊˚⋆</p>
+
+        <div class="w-full max-w-[280px] mt-2 flex flex-col gap-2.5">
+          <button onclick="switchTab('about')" class="jump-btn">
+            <span id="btn-sparkle-about"></span>
+            <span>go to ‹ about me ›</span>
+          </button>
+          <button onclick="switchTab('links')" class="jump-btn">
+            <span id="btn-sparkle-links"></span>
+            <span>go to ‹ my links ›</span>
+          </button>
+        </div>
+
+        <div class="pixel-divider w-32 mt-2"></div>
+        <p class="pixel-font text-[8px] text-[var(--lavender-deep)] tracking-wide">est. today • v1.0 • uwu build</p>
+      </div>
+    </section>
+
+    <section id="view-about" class="hidden">
+      <div class="grid sm:grid-cols-[auto_1fr] gap-6 items-start">
+        <div class="flex sm:flex-col items-center gap-3 mx-auto sm:mx-0">
+          <div class="win-border-inset bg-[var(--pink-light)] p-3 rounded-sm floaty" id="catAvatar"></div>
+          <div class="flex gap-2 items-center" id="aboutBadges"></div>
+        </div>
+
+        <div class="w-full">
+          <h2 class="pixel-font text-[11px] text-[var(--pink-deep)] mb-1">a lil about me</h2>
+          <p class="text-[11.5px] text-[#8b7d92] italic mb-3">˚₊· ͟͟͞͞➳ traits.txt</p>
+
+          <ul class="w-full">
+            <li class="about-li">✦ <b>horn african</b> • ˚ 𐦍</li>
+            <li class="about-li">✦ <b>linux user</b> • ˚ (running a clean, custom terminal setup)</li>
+            <li class="about-li">✦ <b>furry</b> • ˚ 🐾</li>
+            <li class="about-li">✦ <b>cryptography</b> • ˚ (fascinated by cicada 3301 &amp; puzzles)</li>
+            <li class="about-li">✦ <b>digital artist</b> • ˚ (creating art in procreate)</li>
+          </ul>
+
+          <div class="pixel-divider w-full mt-4"></div>
+          <p class="text-[12px] text-[#8b7d92] mt-3 italic">currently: decrypting vibes and vectorizing feelings ⋆｡˚</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-links" class="hidden">
+      <div class="flex flex-col items-center gap-5">
+        <div id="linksStamp" class="blinky"></div>
+        <h2 class="pixel-font text-[11px] text-[var(--pink-deep)] text-center">find me around the web</h2>
+        <div class="pixel-divider w-40"></div>
+
+        <div class="grid grid-cols-1 gap-3 w-full max-w-[300px]">
+          <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+            <span>( ¬ᴗ¬ ) discord</span>
+            <span class="pixel-font text-[9px]">➳</span>
+          </a>
+          <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+            <span>❀ ‿ pinterest</span>
+            <span class="pixel-font text-[9px]">➳</span>
+          </a>
+        </div>
+
+        <div class="pixel-divider w-40"></div>
+        <p class="text-[11.5px] text-[#8b7d92] text-center">‧₊˚⊹ click a button to say hi ⊹˚₊‧</p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="flex items-center gap-2 px-2 py-2 bg-gradient-to-r from-[var(--lavender-deep)] to-[var(--pink-deep)] border-t-2 border-[var(--grey-border)]">
+    <button class="tab-btn flex items-center gap-1.5" id="startBtn" title="uwu menu">
+      <span id="startSparkle"></span> start
+    </button>
+    <div class="flex gap-1.5 flex-1 overflow-x-auto">
+      <button data-tab="home" class="tab-btn active">[ home ]</button>
+      <button data-tab="about" class="tab-btn">[ about ]</button>
+      <button data-tab="links" class="tab-btn">[ links ]</button>
+    </div>
+    <span id="clock" class="pixel-font text-[8.5px] text-white hidden xs:block sm:block" style="text-shadow:1px 1px 0 rgba(0,0,0,.25);"></span>
+  </div>
+
+</main>
+
+<script>
+  /* ---------- tiny pixel-art engine (no external images, fully self-contained) ---------- */
+  const NS = "http://www.w3.org/2000/svg";
+
+  function mirror(rowsLeft){
+    return rowsLeft.map(row => row.concat([...row].slice().reverse()));
+  }
+
+  function drawPixelArt(mount, matrix, palette, pixelSize){
+    const rows = matrix.length, cols = matrix[0].length;
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", `0 0 ${cols} ${rows}`);
+    svg.setAttribute("width", cols * pixelSize);
+    svg.setAttribute("height", rows * pixelSize);
+    svg.setAttribute("shape-rendering", "crispEdges");
+    matrix.forEach((row, y) => {
+      row.forEach((v, x) => {
+        if (v === 0) return;
+        const r = document.createElementNS(NS, "rect");
+        r.setAttribute("x", x); r.setAttribute("y", y);
+        r.setAttribute("width", 1); r.setAttribute("height", 1);
+        r.setAttribute("fill", palette[v]);
+        svg.appendChild(r);
+      });
+    });
+    mount.appendChild(svg);
+  }
+
+  /* pixel heart */
+  const HEART = [
+    [0,1,1,0,0,1,1,0],
+    [1,3,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,1,1,1,0,0],
+    [0,0,0,1,1,0,0,0],
+  ];
+  const HEART_PALETTE = { 1: "#F08A9C", 3: "#FFFFFF" };
+
+  /* pixel sparkle */
+  const SPARKLE = [
+    [0,0,1,0,0],
+    [0,0,1,0,0],
+    [0,1,1,1,0],
+    [1,1,1,1,1],
+    [0,1,1,1,0],
+    [0,0,1,0,0],
+    [0,0,1,0,0],
+  ];
+  const sparklePalette = (hex) => ({ 1: hex });
+
+  /* pixel paw */
+  const PAW = [
+    [0,1,1,0,0,1,1,0],
+    [0,1,1,0,0,1,1,0],
+    [0,0,0,1,1,0,0,0],
+    [0,0,1,1,1,1,0,0],
+    [0,1,1,1,1,1,1,0],
+    [0,1,1,1,1,1,1,0],
+    [0,0,1,1,1,1,0,0],
+  ];
+  const PAW_PALETTE = { 1: "#C6B4EE" };
+
+  /* pixel cat avatar (hand-built left half, mirrored) */
+  const CAT_LEFT = [
+    [0,0,2,1,1,0,0],
+    [0,2,2,1,1,1,0],
+    [0,2,1,1,1,1,0],
+    [0,0,1,1,1,1,1],
+    [0,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,4,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,5,1,1,1,1,1],
+    [1,1,1,4,1,1,1],
+    [0,1,1,1,1,1,1],
+    [0,0,1,1,1,1,0],
+    [0,0,0,1,1,0,0],
+  ];
+  const CAT = mirror(CAT_LEFT);
+  const CAT_PALETTE = { 1: "#FFC9D6", 2: "#F08A9C", 4: "#5F5266", 5: "#FFAFC0" };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    drawPixelArt(document.getElementById("homeStamp"), HEART, HEART_PALETTE, 10);
+    drawPixelArt(document.getElementById("linksStamp"), HEART, HEART_PALETTE, 8);
+    drawPixelArt(document.getElementById("catAvatar"), CAT, CAT_PALETTE, 8);
+
+    drawPixelArt(document.getElementById("aboutBadges"), SPARKLE, sparklePalette("#F08A9C"), 6);
+    drawPixelArt(document.getElementById("aboutBadges"), PAW, PAW_PALETTE, 6);
+    drawPixelArt(document.getElementById("aboutBadges"), SPARKLE, sparklePalette("#C6B4EE"), 6);
+
+    drawPixelArt(document.getElementById("btn-sparkle-about"), SPARKLE, sparklePalette("#F08A9C"), 4);
+    drawPixelArt(document.getElementById("btn-sparkle-links"), SPARKLE, sparklePalette("#F08A9C"), 4);
+    drawPixelArt(document.getElementById("startSparkle"), SPARKLE, sparklePalette("#5F5266"), 4);
+
+    drawPixelArt(document.getElementById("bg-sparkle-1"), SPARKLE, sparklePalette("#F08A9C"), 10);
+    drawPixelArt(document.getElementById("bg-sparkle-2"), SPARKLE, sparklePalette("#C6B4EE"), 8);
+    drawPixelArt(document.getElementById("bg-sparkle-3"), SPARKLE, sparklePalette("#F08A9C"), 8);
+    drawPixelArt(document.getElementById("bg-sparkle-4"), SPARKLE, sparklePalette("#C6B4EE"), 10);
+  });
+
+  /* ---------- tab switching ---------- */
+  const TITLES = {
+    home:  "〔 ✦ start.page 〕",
+    about: "〔 📄 about.me 〕",
+    links: "〔 🔗 accounts.me 〕",
+  };
+
+  function switchTab(tab){
+    document.querySelectorAll('section[id^="view-"]').forEach(el => el.classList.add('hidden'));
+    document.getElementById('view-' + tab).classList.remove('hidden');
+
+    document.querySelectorAll('.tab-btn[data-tab]').forEach(b => b.classList.remove('active'));
+    const activeBtn = document.querySelector('.tab-btn[data-tab="' + tab + '"]');
+    if (activeBtn) activeBtn.classList.add('active');
+
+    document.getElementById('titleBarText').textContent = TITLES[tab];
+    document.getElementById('mainContent').scrollTop = 0;
+  }
+
+  document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  });
+
+  /* ---------- taskbar clock ---------- */
+  function updateClock(){
+    const now = new Date();
+    let h = now.getHours();
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const ampm = h >= 12 ? 'pm' : 'am';
+    h = h % 12; if (h === 0) h = 12;
+    const el = document.getElementById('clock');
+    if (el) el.textContent = `${h}:${m} ${ampm}`;
+  }
+  updateClock();
+  setInterval(updateClock, 15000);
+</script>
+
+</body>
+</html>
